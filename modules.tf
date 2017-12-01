@@ -1,16 +1,13 @@
 
 module "canary" {
-  source = "github.com/joshdurbin/aws_canary_sensor_capture"
+  source = "github.com/joshdurbin/terraform-aws-canary-security-sensor-capture-rest-api"
   kms_arn = "arn:aws:kms:${var.default_region}:${data.aws_caller_identity.current_identify.account_id}:key/ecc9a0f4-8a2c-4eac-a58c-64193842113e"
   canary_username = "${var.canary_username}"
   canary_encrytped_password = "${var.canary_encrypted_password}"
-  number_of_generated_api_keys = 0
+  number_of_generated_api_keys = 1
 }
 
-output "my_canary_api_keys" {
-  value = "${module.canary.api_keys}"
-}
-
-output "my_canary_api_gateway_endpoint" {
-  value = "${module.canary.api_gateway_endpoint}"
+module "net_stat_tracker" {
+  source = "github.com/joshdurbin/terraform-network-status-monitor-storage-and-api"
+  number_of_generated_api_keys = 1
 }

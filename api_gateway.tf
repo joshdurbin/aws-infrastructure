@@ -9,3 +9,10 @@ resource "aws_api_gateway_base_path_mapping" "canary_data" {
   stage_name = "${module.canary.api_stage_name}"
   domain_name = "${aws_api_gateway_domain_name.apps_joshdurbin.domain_name}"
 }
+
+resource "aws_api_gateway_base_path_mapping" "net_stat_tracker" {
+  base_path = "net_stat_tracker"
+  api_id = "${module.net_stat_tracker.api_id}"
+  stage_name = "${module.net_stat_tracker.api_stage_name}"
+  domain_name = "${aws_api_gateway_domain_name.apps_joshdurbin.domain_name}"
+}
