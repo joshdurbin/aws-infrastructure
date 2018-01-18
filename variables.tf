@@ -20,7 +20,7 @@ variable "default_google_zone" {
 }
 
 variable "gcp_node_type" {
-  default = "g1-small"
+  default = "n1-standard-1"
 }
 
 variable "gcp_cluster_count" {
