@@ -34,4 +34,16 @@ resource "google_container_cluster" "gcp_kubernetes" {
       managed-by-terraform = true
     }
   }
+
+  addons_config {
+    kubernetes_dashboard {
+      disabled = true
+    }
+  }
+
+  maintenance_policy {
+    daily_maintenance_window {
+      start_time = "03:00"
+    }
+  }
 }
