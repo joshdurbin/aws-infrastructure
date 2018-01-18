@@ -8,6 +8,15 @@ resource "aws_route53_zone" "www_joshdurbin_net" {
   }
 }
 
+resource "aws_route53_record" "k8s_joshdurbin_net" {
+
+  name = "k8s"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+  type = "A"
+  ttl = "60"
+  records = ["${google_compute_global_address.gcp_ingress_ip.address}"]
+}
+
 resource "aws_route53_record" "vpn_joshdurbin_net" {
 
   name = "vpn"
