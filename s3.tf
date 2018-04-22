@@ -25,3 +25,9 @@ resource "aws_s3_bucket" "www_joshdurbin_net" {
 
   policy = "${data.aws_iam_policy_document.www_joshdurbin_net.json}"
 }
+
+resource "aws_s3_bucket" "offline_media" {
+
+  bucket = "offline-media"
+  acl = "private"
+}
