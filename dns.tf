@@ -67,3 +67,13 @@ resource "aws_route53_record" "apps_joshdurbin_net" {
     evaluate_target_health = true
   }
 }
+
+resource "aws_route53_record" "keybase_verification_joshdurbin_net" {
+
+  name = "_keybase"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+  type = "TXT"
+  ttl = "60"
+
+  records = ["keybase-site-verification=3Xua_2l2_vi5onXlYIYi5WPnb_wL-vi5dqs010jZR7o"]
+}
