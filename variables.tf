@@ -7,6 +7,10 @@ variable "joshdurbin_net" {
   default = "joshdurbin.net"
 }
 
+variable "mail_joshdurbin_net" {
+  default = "mail.joshdurbin.net"
+}
+
 variable "default_aws_region" {
   default = "us-west-2"
 }
@@ -30,6 +34,20 @@ variable "gcp_cluster_count" {
 variable "cluster_name" {
   default = "test"
 }
+
+variable "digital_ocean_mail_server_machine_image" {
+  default = "ubuntu-14-04-x64"
+}
+
+variable "digital_ocean_mail_server_machine_type" {
+  default = "1024"
+}
+
+variable "global_ttl" {
+  default = "60"
+}
+
+variable "digital_ocean_token" {}
 
 variable "www_joshdurbin_net_certificate_id" {}
 variable "canary_username" { }

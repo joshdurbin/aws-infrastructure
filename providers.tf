@@ -9,6 +9,10 @@ provider "google" {
   region = "${var.default_google_region}"
 }
 
+provider "digitalocean" {
+  token = "${var.digital_ocean_token}"
+}
+
 terraform {
   required_version = ">= 0.9.0"
 

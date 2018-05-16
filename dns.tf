@@ -8,24 +8,6 @@ resource "aws_route53_zone" "www_joshdurbin_net" {
   }
 }
 
-resource "aws_route53_record" "k8s_joshdurbin_net" {
-
-  name = "k8s"
-  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
-  type = "A"
-  ttl = "60"
-  records = ["${google_compute_global_address.gcp_ingress_ip.address}"]
-}
-
-resource "aws_route53_record" "vpn_joshdurbin_net" {
-
-  name = "vpn"
-  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
-  type = "A"
-  ttl = "60"
-  records = ["73.92.243.251"]
-}
-
 resource "aws_route53_record" "joshdurbin_net" {
 
   name = ""
@@ -73,7 +55,66 @@ resource "aws_route53_record" "keybase_verification_joshdurbin_net" {
   name = "_keybase"
   zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
   type = "TXT"
-  ttl = "60"
+  ttl = "${var.global_ttl}"
 
   records = ["keybase-site-verification=3Xua_2l2_vi5onXlYIYi5WPnb_wL-vi5dqs010jZR7o"]
+}
+
+//resource "aws_route53_record" "mail_joshdurbin_net" {
+//
+//  name = "mail"
+//  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+//  type = "A"
+//  ttl = "60"
+//
+//  records = ["${digitalocean_droplet.mail_server.ipv4_address}"]
+//}
+
+resource "aws_route53_record" "mx_record_joshdurbin_net" {
+
+  name = "${var.joshdurbin_net}"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+  type = "MX"
+  ttl = "${var.global_ttl}"
+  records = ["10 in1-smtp.messagingengine.com", "20 in2-smtp.messagingengine.com"]
+}
+
+resource "aws_route53_record" "spf1" {
+
+  name = ""
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+  type = "TXT"
+  ttl = "${var.global_ttl}"
+
+  records = ["v=spf1 include:spf.messagingengine.com ?all"]
+}
+
+resource "aws_route53_record" "dkim1" {
+
+  name = "fm1._domainkey"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+  type = "TXT"
+  ttl = "${var.global_ttl}"
+
+  records = ["fm1.${var.joshdurbin_net}.dkim.fmhosted.com"]
+}
+
+resource "aws_route53_record" "dkim2" {
+
+  name = "fm2._domainkey"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+  type = "TXT"
+  ttl = "${var.global_ttl}"
+
+  records = ["fm2.${var.joshdurbin_net}.dkim.fmhosted.com"]
+}
+
+resource "aws_route53_record" "dkim3" {
+
+  name = "fm3._domainkey"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+  type = "TXT"
+  ttl = "${var.global_ttl}"
+
+  records = ["fm3.${var.joshdurbin_net}.dkim.fmhosted.com"]
 }
