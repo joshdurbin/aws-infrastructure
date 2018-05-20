@@ -36,11 +36,15 @@ variable "cluster_name" {
 }
 
 variable "digital_ocean_mail_server_machine_image" {
-  default = "ubuntu-14-04-x64"
+  default = "ubuntu-16-04-x64"
 }
 
 variable "digital_ocean_mail_server_machine_type" {
-  default = "1024"
+  default = "s-1vcpu-3gb"
+}
+
+variable "default_digitalocean_zone" {
+  default = "sfo2"
 }
 
 variable "global_ttl" {

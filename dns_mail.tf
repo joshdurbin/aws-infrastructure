@@ -7,8 +7,7 @@ resource "aws_route53_record" "mail_joshdurbin_net" {
   ttl = "${var.global_ttl}"
 
   records = [
-    "66.111.4.147",
-    "66.111.4.148"
+    "${digitalocean_droplet.mail_server.ipv4_address}"
   ]
 }
 
@@ -19,8 +18,7 @@ resource "aws_route53_record" "mx_record_joshdurbin_net" {
   type = "MX"
   ttl = "${var.global_ttl}"
   records = [
-    "10 in1-smtp.messagingengine.com",
-    "20 in2-smtp.messagingengine.com"
+    "10 ${aws_route53_record.mail_joshdurbin_net.fqdn}"
   ]
 }
 
@@ -141,7 +139,7 @@ resource "aws_route53_record" "client_caldav_auto_discovery_caldav" {
   zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
   ttl = "${var.global_ttl}"
 
-  records = ["0 0 0 . "]
+  records = ["0 0 0 ."]
 }
 
 resource "aws_route53_record" "client_caldav_auto_discovery_caldavs" {
