@@ -59,3 +59,22 @@ resource "aws_route53_record" "keybase_verification_joshdurbin_net" {
 
   records = ["keybase-site-verification=3Xua_2l2_vi5onXlYIYi5WPnb_wL-vi5dqs010jZR7o"]
 }
+
+resource "aws_route53_record" "gsuite_proof" {
+
+  name = "15814602"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+  type = "CNAME"
+  ttl = "${var.global_ttl}"
+
+  records = [
+    "google.com"
+  ]
+}
+
+module "example_fastmail" {
+  source = "github.com/bluk/terraform-aws-fastmail-dns"
+
+  domain_name = "${var.joshdurbin_net}"
+  route53_zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+}
