@@ -1,4 +1,3 @@
-
 variable "www_joshdurbin_net" {
   default = "www.joshdurbin.net"
 }
@@ -54,8 +53,8 @@ variable "global_ttl" {
 variable "digital_ocean_token" {}
 
 variable "www_joshdurbin_net_certificate_id" {}
-variable "canary_username" { }
-variable "canary_encrypted_password" { }
+variable "canary_username" {}
+variable "canary_encrypted_password" {}
 
 variable "k8s_cluster_linux_admin_username" {}
 variable "k8s_cluster_linux_admin_password" {}
