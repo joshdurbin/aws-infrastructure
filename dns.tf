@@ -63,6 +63,18 @@ resource "aws_route53_record" "mail_joshdurbin_net" {
   ]
 }
 
+resource "aws_route53_record" "autoconfig_joshdurbin_net" {
+
+  name = "autoconfig"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
+  type = "A"
+  ttl = "${var.global_ttl}"
+
+  records = [
+    "${digitalocean_droplet.mail_server.ipv4_address}"
+  ]
+}
+
 resource "aws_route53_record" "mx_record_joshdurbin_net" {
 
   name = "${var.joshdurbin_net}"

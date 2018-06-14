@@ -11,6 +11,7 @@ resource "digitalocean_droplet" "mail_server" {
   ]
 
   monitoring = true
+  backups = true
 
   tags = [
     "${digitalocean_tag.managed_by_terraform.id}"
