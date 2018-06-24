@@ -51,37 +51,96 @@ resource "aws_route53_record" "keybase_verification_joshdurbin_net" {
   records = ["keybase-site-verification=3Xua_2l2_vi5onXlYIYi5WPnb_wL-vi5dqs010jZR7o"]
 }
 
-resource "aws_route53_record" "mail_joshdurbin_net" {
 
-  name = "mail"
-  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
-  type = "A"
-  ttl = "${var.global_ttl}"
+resource "aws_route53_record" "g_suite_spf" {
+  name    = ""
+  type    = "TXT"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
+  ttl     = "${var.global_ttl}"
 
   records = [
-    "${digitalocean_droplet.mail_server.ipv4_address}"
+    "v=spf1 include:_spf.google.com ~all",
   ]
 }
 
-resource "aws_route53_record" "autoconfig_joshdurbin_net" {
-
-  name = "autoconfig"
-  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
-  type = "A"
-  ttl = "${var.global_ttl}"
+resource "aws_route53_record" "g_suite_dkim" {
+  name    = "google._domainkey"
+  type    = "TXT"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
+  ttl     = "${var.global_ttl}"
 
   records = [
-    "${digitalocean_droplet.mail_server.ipv4_address}"
+    "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuhEjsqG07ljLzjY0i/T7AXyX6n+s2x+Ef90gZEIcQqkZWMHGtcya\" \"gMBo4JB0kcDOoPzclpA6sHEZzOakDcRuI8MraRywrUF+bu8gSCz9lPAwN4mjF5Xm/ZIHMAxeHPyaTqaRJOTZpm2TX9eKvgf82BoKuJlFEHe2Jf8t5\" \"7qPAeVt/EbccPalNqrVe5WxRYcKgseT2BP3wdumJ6xXVuS1i/T3rEDDBj37P8GqKTfkp5NQITtXwW4IQwtUEyuXnh42LlstyYxsP6D95SBypTwPkC\" \"T70CUZ71H7xJ9Rd6zMLi6O/RKVL2pCvpR9PwLbVXr8oB1d5M40tS76yXDvQgblowIDAQAB",
   ]
 }
 
-resource "aws_route53_record" "mx_record_joshdurbin_net" {
+resource "aws_route53_record" "g_suite_mail_cname" {
+  name    = "mail"
+  type    = "CNAME"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
+  ttl     = "${var.global_ttl}"
 
-  name = "${var.joshdurbin_net}"
-  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
-  type = "MX"
-  ttl = "${var.global_ttl}"
   records = [
-    "10 ${aws_route53_record.mail_joshdurbin_net.fqdn}"
+    "ghs.googlehosted.com",
+  ]
+}
+
+resource "aws_route53_record" "g_suite_drive_cname" {
+  name    = "drive"
+  type    = "CNAME"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
+  ttl     = "${var.global_ttl}"
+
+  records = [
+    "ghs.googlehosted.com",
+  ]
+}
+
+resource "aws_route53_record" "g_suite_calendar_cname" {
+  name    = "calendar"
+  type    = "CNAME"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
+  ttl     = "${var.global_ttl}"
+
+  records = [
+    "ghs.googlehosted.com",
+  ]
+}
+
+resource "aws_route53_record" "g_suite_sites_cname" {
+  name    = "sites"
+  type    = "CNAME"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
+  ttl     = "${var.global_ttl}"
+
+  records = [
+    "ghs.googlehosted.com",
+  ]
+}
+
+resource "aws_route53_record" "g_suite_groups_cname" {
+  name    = "groups"
+  type    = "CNAME"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
+  ttl     = "${var.global_ttl}"
+
+  records = [
+    "ghs.googlehosted.com",
+  ]
+}
+
+resource "aws_route53_record" "g_suite_mx" {
+  name    = ""
+  type    = "MX"
+  zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
+  ttl     = "${var.global_ttl}"
+
+  records = [
+    "1 aspmx.l.google.com",
+    "5 alt1.aspmx.l.google.com",
+    "5 alt2.aspmx.l.google.com",
+    "10 alt3.aspmx.l.google.com",
+    "10 alt4.aspmx.l.google.com",
+    "15 udqpaqboo4oyxjp27e5myhezdw6qfjrhf7ap7nmddfqighyz7vzq.mx-verification.google.com."
   ]
 }
