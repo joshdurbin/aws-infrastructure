@@ -50,39 +50,3 @@ resource "aws_route53_record" "keybase_verification_joshdurbin_net" {
 
   records = ["keybase-site-verification=3Xua_2l2_vi5onXlYIYi5WPnb_wL-vi5dqs010jZR7o"]
 }
-
-
-resource "aws_route53_record" "mail_joshdurbin_net" {
-
-  name = "mail"
-  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
-  type = "A"
-  ttl = "${var.global_ttl}"
-
-  records = [
-    "${digitalocean_droplet.mail_server.ipv4_address}"
-  ]
-}
-
-resource "aws_route53_record" "autoconfig_joshdurbin_net" {
-
-  name = "autoconfig"
-  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
-  type = "A"
-  ttl = "${var.global_ttl}"
-
-  records = [
-    "${digitalocean_droplet.mail_server.ipv4_address}"
-  ]
-}
-
-resource "aws_route53_record" "mx_record_joshdurbin_net" {
-
-  name = "${var.joshdurbin_net}"
-  zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
-  type = "MX"
-  ttl = "${var.global_ttl}"
-  records = [
-    "10 ${aws_route53_record.mail_joshdurbin_net.fqdn}"
-  ]
-}
