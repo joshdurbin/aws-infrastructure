@@ -19,7 +19,3 @@ provider "google" {
   project     = "k8s-test-land"
   region      = "${var.default_google_region}"
 }
-
-provider "digitalocean" {
-  token = "${var.digital_ocean_token}"
-}
