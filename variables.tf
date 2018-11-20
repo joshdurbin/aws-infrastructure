@@ -25,14 +25,14 @@ variable "g_suite_verification_key" {
 
 variable "g_suite_mail_dkim" {
   default = [
-    "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuhEjsqG07ljLzjY0i/T7AXyX6n+s2x+Ef90gZEIcQqkZWMHGtcya\" \"gMBo4JB0kcDOoPzclpA6sHEZzOakDcRuI8MraRywrUF+bu8gSCz9lPAwN4mjF5Xm/ZIHMAxeHPyaTqaRJOTZpm2TX9eKvgf82BoKuJlFEHe2Jf8t5\" \"7qPAeVt/EbccPalNqrVe5WxRYcKgseT2BP3wdumJ6xXVuS1i/T3rEDDBj37P8GqKTfkp5NQITtXwW4IQwtUEyuXnh42LlstyYxsP6D95SBypTwPkC\" \"T70CUZ71H7xJ9Rd6zMLi6O/RKVL2pCvpR9PwLbVXr8oB1d5M40tS76yXDvQgblowIDAQAB",
+    "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAujkPAxwewhXEcYQXbG2IKrIUN1BhWygRboEUFcfyuraQFsfWtW29\" \"KyglCXZHbyluMgXJM2FnOcbAAlZbH9KSOqoSunG16ObGwbCN5P04zrOFCO17FGrKSMVVO8ThYbveGjIycTSYUfAiXaPrXgShPmieSwDK9Fo7igVGJ\" \"RF/AEi1i/C/mS/P1EgUy7Ib7p4Py6fVusZojqIL9RmzmVasu+x3foOGK7c22mpfjjpWxMVIK9VX5T3GG7ouso1zDF0aDEUODvizaDAaX3qTeHKbqN\" \"GMIZL8w4GtptR/cjTIlczltIkteHhwGYha+tvoKMqv16gFOIP9O2woClsJ9ioH6wIDAQAB"
   ]
 
   type = "list"
 }
 
 variable "g_suite_mx_verification_key" {
-  default = "15 udqpaqboo4oyxjp27e5myhezdw6qfjrhf7ap7nmddfqighyz7vzq.mx-verification.google.com."
+  default = "15 UDQPAQBOO4OYXJP27E5MYHEZDW6QFJRHF7AP7NMDDFQIGHYZ7VZQ.MX-VERIFICATION.GOOGLE.COM."
   type    = "string"
 }
 
