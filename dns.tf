@@ -39,11 +39,9 @@ resource "aws_route53_record" "keybase_verification_joshdurbin_net" {
   records = ["keybase-site-verification=3Xua_2l2_vi5onXlYIYi5WPnb_wL-vi5dqs010jZR7o"]
 }
 
-module "gsuite_records" {
-  source                        = "github.com/joshdurbin/gsuite_route53_terraform_module"
-  route53_zone_name             = "${aws_route53_zone.www_joshdurbin_net.name}"
-  record_ttl                    = "${var.global_ttl}"
-  g_suite_site_verification_key = "${var.g_suite_verification_key}"
-  g_suite_mx_verification_key   = "${var.g_suite_mx_verification_key}"
-  g_suite_mail_dkim             = "${var.g_suite_mail_dkim}"
+module "fastmail_records" {
+  source = "github.com/bluk/terraform-aws-fastmail-dns"
+
+  domain_name = "joshdurbin.net"
+  route53_zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
 }
