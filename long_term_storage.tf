@@ -15,3 +15,15 @@ resource "google_storage_bucket" "photos_archive" {
   name = "photos_archive"
   storage_class = "COLDLINE"
 }
+
+resource "aws_s3_bucket" "email_archive" {
+
+  bucket = "gmail-email-archive"
+  acl = "private"
+}
+
+resource "aws_s3_bucket" "chats_archive" {
+
+  bucket = "gmail-chats-archive"
+  acl = "private"
+}
