@@ -19,7 +19,7 @@ variable "default_aws_region" {
 }
 
 variable "global_ttl" {
-  default = "60"
+  default = "3600"
   type    = "string"
 }
 

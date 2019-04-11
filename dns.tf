@@ -40,10 +40,10 @@ resource "aws_route53_record" "keybase_verification_joshdurbin_net" {
 }
 
 resource "aws_route53_record" "migadu_mx" {
-  name = ""
-  type = "MX"
+  name    = ""
+  type    = "MX"
   zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
-  ttl     = "60"
+  ttl     = "${var.global_ttl}"
   records = ["10 aspmx1.migadu.com", "20 aspmx2.migadu.com"]
 }
 
@@ -51,7 +51,7 @@ resource "aws_route53_record" "migadu_spif" {
   name    = ""
   zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
   type    = "TXT"
-  ttl     = "60"
+  ttl     = "${var.global_ttl}"
 
   records = ["v=spf1 a mx include:spf.migadu.com ~all"]
 }
@@ -60,7 +60,7 @@ resource "aws_route53_record" "migadu_dkim" {
   name    = "default._domainkey.${var.joshdurbin_net}"
   zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
   type    = "TXT"
-  ttl     = "60"
+  ttl     = "${var.global_ttl}"
 
   records = ["v=DKIM1; k=rsa; s=email; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDCvXlSt4NObUEhoJTCGWc+haDCpm0DcKABQgvQn/V5dAsRcKVaE9vH+449Tr1Bf2TLAhklVDMyzHd26TCIaQhkSre78zViOUFcgc/aOvc34MGChcfy8nNZp31PLb/zKQRzfQI0oWQRmdhnKwD4Em8uMP5QdakH3Vhm6lxgGVvIUQIDAQAB"]
 }
@@ -69,7 +69,7 @@ resource "aws_route53_record" "migadu_dmarc" {
   name    = "_dmarc.${var.joshdurbin_net}"
   zone_id = "${aws_route53_zone.www_joshdurbin_net.id}"
   type    = "TXT"
-  ttl     = "60"
+  ttl     = "${var.global_ttl}"
 
   records = ["v=DMARC1; p=none; fo=1; rua=mailto:admin@joshdurbin.net"]
 }
