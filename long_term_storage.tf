@@ -18,10 +18,6 @@ resource "google_storage_bucket" "ebooks_archive" {
   storage_class = "COLDLINE"
 }
 
-resource "goole_storage_bucket" "misc_storage" {
-  name = "misc"
-}
-
 resource "aws_s3_bucket" "email_archive" {
   bucket = "durbinjo593-gmail-archive"
   acl    = "private"
