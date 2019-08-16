@@ -41,7 +41,7 @@ resource "aws_route53_record" "keybase_verification_joshdurbin_net" {
 
 module "fastmail_records" {
   source = "github.com/bluk/terraform-aws-fastmail-dns"
-	
-  domain_name = "joshdurbin.net"
+
+  domain_name     = "joshdurbin.net"
   route53_zone_id = "${aws_route53_zone.www_joshdurbin_net.zone_id}"
 }
